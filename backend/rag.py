@@ -9,6 +9,7 @@ hf_token = os.getenv("HF_TOKEN")
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
+#creates chunks
 def create_chunks(text,chunk_size = 1000,overlap = 200):
     chunks = []
     start = 0
@@ -21,7 +22,7 @@ def create_chunks(text,chunk_size = 1000,overlap = 200):
 
     return chunks  
 
-
+#creates embeddings
 def create_embeddings(chunks):
 
     embeddings =  model.encode(chunks)
@@ -31,7 +32,7 @@ def create_query_embedding(query):
     query_embedding  = model.encode(query)
     return query_embedding
 
-
+#cosine similarity
 def cosine_similarity(vector1,vector2):
     dot_product = np.dot(vector1,vector2)
 
