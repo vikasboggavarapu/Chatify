@@ -41,3 +41,23 @@ def cosine_similarity(vector1,vector2):
     similarity = dot_product / (magnitude1 * magnitude2)
     return similarity
 
+def search_similar_chunks(query,chunks,embeddings,top_k=3):
+    query_embedding = create_query_embedding(query)
+    scores = []
+
+    for i in range(len(chunks)):
+        similarity = cosine_similarity(query_embedding,embeddings[i])
+        scores.append((similarity,i))
+
+    scores.sort(reverse = True)
+    top_results = scores[:top_k]    
+
+    results = []
+
+    for score,index in top_results:
+        results.append({
+            "chunk" : chunks[index],
+            "score" : float(score)
+        })
+
+    return results    

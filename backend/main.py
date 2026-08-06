@@ -1,7 +1,8 @@
 from fastapi import FastAPI,UploadFile,File
 from fastapi.middleware.cors import CORSMiddleware
 from pdf_utils import extract_text_from_pdf
-from rag import create_chunks,create_embeddings
+from rag import (create_chunks,create_embeddings,search_similar_chunks)
+from pydantic import BaseModel
 
 
 app = FastAPI()
@@ -14,6 +15,13 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+
+stored_chunks = []
+stored_embeddings = None
+
+class ChatRequest(BaseModel):
+    query : str
+
 @app.get("/")
 def home():
     return {"message": "Chatify is running"}
@@ -22,22 +30,33 @@ def home():
 @app.post("/upload")
 async def upload_pdf(file : UploadFile = File(...)):
 
+    global stored_chunks, stored_embeddings
+
     if file.content_type != "application/pdf":
         return {"error" : "Please upload a PDF file"}
 
     text = extract_text_from_pdf(file.file)
 
-    chunks = create_chunks(text)
+    stored_chunks = create_chunks(text)
 
-    embeddings = create_embeddings(chunks)
+    stored_embeddings = create_embeddings(stored_chunks)
 
     return {
         "message" : "PDF file uploaded successfully",
         "filename"  : file.filename,
-        "characters" : len(text),
-        "total_chunks" : len(chunks),
-        "total_embeddings": len(embeddings),
-        "first_embedding" : embeddings[0].tolist()
+        "total_chunks" : len(stored_chunks)
+    }
+
+@app.post("/chat")
+async def chat(request: ChatRequest):
+    if not stored_chunks or stored_embeddings is None:
+        return {"error" : "please upload a PDF file first"}
+
+    results = search_similar_chunks(request.query,stored_chunks,stored_embeddings)
+
+    return{
+        "question" : request.query,
+        "results" : results
     }
 
    
