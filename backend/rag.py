@@ -9,7 +9,7 @@ hf_token = os.getenv("HF_TOKEN")
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-#creates chunks
+
 def create_chunks(text,chunk_size = 1000,overlap = 200):
     chunks = []
     start = 0
