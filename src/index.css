@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+
+  background: linear-gradient(
+    135deg,
+    #f8e8e4 0%,
+    #f5f3ef 45%,
+    #e1f0ed 100%
+  );
+
+  background-attachment: fixed;
+  color: #263b3a;
+}
