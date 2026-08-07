@@ -1,5 +1,6 @@
 from fastapi import FastAPI,UploadFile,File
 from fastapi.middleware.cors import CORSMiddleware
+from llm import generate_answer
 from pdf_utils import extract_text_from_pdf
 from rag import (create_chunks,create_embeddings,search_similar_chunks)
 from pydantic import BaseModel
@@ -20,7 +21,7 @@ stored_chunks = []
 stored_embeddings = None
 
 class ChatRequest(BaseModel):
-    query : str
+    question : str
 
 @app.get("/")
 def home():
@@ -52,12 +53,15 @@ async def chat(request: ChatRequest):
     if not stored_chunks or stored_embeddings is None:
         return {"error" : "please upload a PDF file first"}
 
-    results = search_similar_chunks(request.query,stored_chunks,stored_embeddings)
+    results = search_similar_chunks(request.question,stored_chunks,stored_embeddings)
+
+    context = "\n\n".join(result["chunk"] for result in results)
+
+    answer = generate_answer(request.question,context)
 
     return{
-        "question" : request.query,
-        "results" : results
+        "question" : request.question,
+         "answer" : answer
     }
 
    
-    
