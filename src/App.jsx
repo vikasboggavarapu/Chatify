@@ -110,7 +110,7 @@ function App() {
       <h1>💬 Chat with PDF</h1>
 
       <p>
-        Upload a PDF and ask questions about the document.
+        Upload a PDF file and ask questions.
       </p>
 
 
