@@ -22,10 +22,22 @@ This project demonstrates the fundamental concepts behind Retrieval-Augmented Ge
 * ⏳ PDF processing/loading indicator
 * 🔐 Secure API-key management using environment variables
 
----
+-----
 
-#ScreenShots
+## ScreenShots
 
+## Home Page
+![Home Page](screenshots/Chatify_home_page.png)
+
+## Upload Page
+![Pdf Upload](screenshots/pdf_uploaded.png)
+
+## Answer Analysis
+![Answer Generation](screenshots/answer_generation.png)
+
+
+
+-----
 
 ## 🧠 How It Works
 
@@ -67,7 +79,7 @@ Combine Chunks into Context
       ▼
 Context-Aware Answer
 ```
----
+-----
 
 ## 🛠️ Tech Stack
 
@@ -95,7 +107,7 @@ Context-Aware Answer
 * Cosine similarity for semantic retrieval
 * Groq-hosted LLM for answer generation
 
----
+----
 
 ## 📂 Project Structure
 
