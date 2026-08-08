@@ -22,7 +22,7 @@ This project demonstrates the fundamental concepts behind Retrieval-Augmented Ge
 * ⏳ PDF processing/loading indicator
 * 🔐 Secure API-key management using environment variables
 
------
+---
 
 ## ScreenShots
 
@@ -37,7 +37,7 @@ This project demonstrates the fundamental concepts behind Retrieval-Augmented Ge
 
 
 
------
+---
 
 ## 🧠 How It Works
 
@@ -79,7 +79,7 @@ Combine Chunks into Context
       ▼
 Context-Aware Answer
 ```
------
+---
 
 ## 🛠️ Tech Stack
 
