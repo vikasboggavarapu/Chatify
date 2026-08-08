@@ -8,10 +8,6 @@ function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 
-  // =========================
-  // Upload PDF
-  // =========================
-
   const uploadPDF = async () => {
     if (!file) {
       setUploadMessage("Please select a PDF first.");
@@ -60,11 +56,6 @@ function App() {
     }
   };
 
-
-  // =========================
-  // Ask Question
-  // =========================
-
   const askQuestion = async () => {
     if (!question.trim()) {
       return;
@@ -99,10 +90,6 @@ function App() {
     }
   };
 
-
-  // =========================
-  // UI
-  // =========================
 
   return (
     <div className="container">
