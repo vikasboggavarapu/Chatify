@@ -8,10 +8,7 @@ function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 
-<<<<<<< HEAD
 
-=======
->>>>>>> ded81518265afd69f922fc0a78bc08e274693141
   const uploadPDF = async () => {
     if (!file) {
       setUploadMessage("Please select a PDF first.");
