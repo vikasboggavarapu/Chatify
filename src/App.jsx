@@ -8,9 +8,6 @@ function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 
-  // =========================
-  // Upload PDF
-  // =========================
 
   const uploadPDF = async () => {
     if (!file) {
