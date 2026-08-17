@@ -5,7 +5,6 @@ from pdf_utils import extract_text_from_pdf
 from rag import (create_chunks,create_embeddings,search_similar_chunks)
 from pydantic import BaseModel
 
-
 app = FastAPI()
 
 app.add_middleware(

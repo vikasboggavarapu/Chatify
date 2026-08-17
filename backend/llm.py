@@ -27,8 +27,6 @@ def generate_answer(query,context):
     Answer:
     """
 
-    # Your LLM API call goes here
-
     response = client.chat.completions.create(
          model  = "openai/gpt-oss-120b",
          messages = [{
