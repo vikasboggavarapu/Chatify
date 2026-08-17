@@ -16,7 +16,6 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-
 stored_chunks = []
 stored_embeddings = None
 
